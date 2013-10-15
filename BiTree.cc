@@ -15,13 +15,46 @@
  *
  * =====================================================================================
  */
-#include "BiTree.h"
 #include <stack>
 #include <queue>
 #include <cstdlib>
 #include <iostream>
 using namespace std;
 
+
+template <class DataType>
+class BiTree;
+
+template <class DataType>
+class TreeNode{
+public:
+	TreeNode():lchild(),rchild(){}
+	friend class BiTree<DataType>;
+private:
+	DataType data;
+	TreeNode *lchild,*rchild;
+};
+
+template <class DataType>
+class BiTree{
+public:
+	void CreateBiTree();            // 创建根节点 --主过程
+	void CreateBiTree(TreeNode<DataType>* &p);   //创建根节点 --主过程
+	void PreROrderTraverse();  //递归 -- 先序遍历二叉树 --主过程
+	void PreROrderTraverse(TreeNode<DataType>* p);  //递归 -- 先序遍历二叉树 --子过程
+	void InROrderTraverse();  //递归 -- 中序遍历二叉树 --主过程
+	void InROrderTraverse(TreeNode<DataType>* p);  //递归 -- 中序遍历二叉树 --子过程
+	void PosROrderTraverse();  //递归 -- 后序遍历二叉树 --主过程
+	void PosROrderTraverse(TreeNode<DataType>* p);  //递归 -- 后序遍历二叉树 --子过程
+	void PreOrderTraverse();  //非递归 -- 前序遍历二叉树 
+	void InOrderTraverse();  //非递归 -- 中序遍历二叉树
+	void PostOrderTraverse();  //非递归 -- 后序遍历二叉树
+	void levelOrderTraverse();  //非递归 -- 后序遍历二叉树
+private:
+	TreeNode<DataType>* root;   //树根
+	DataType temp;   //代表元素为空的符号
+
+};
 
 template <class DataType>
 void BiTree<DataType>::CreateBiTree(){            // 创建根节点 --主过程
@@ -156,3 +189,24 @@ void BiTree<DataType>::levelOrderTraverse(){  //非递归 -- 后序遍历二叉�
 	}
 	return;
 }
+
+int main(void){
+	BiTree<char> my;
+	my.CreateBiTree();
+	my.PreROrderTraverse();
+	cout<<endl;
+	my.PreOrderTraverse();
+	cout<<endl;
+	my.InROrderTraverse();
+	cout<<endl;
+	my.InOrderTraverse();
+	cout<<endl;
+	my.PosROrderTraverse();
+	cout<<endl;
+	my.PostOrderTraverse();
+
+	cout<<endl;
+	my.levelOrderTraverse();
+	return 0;
+}
+
